@@ -10,6 +10,7 @@ from datetime import datetime
 from geopack import geopack, t89
 import matplotlib.pyplot as plt
 import numpy as np
+import pathlib
 from spacepy import pycdf
 
 plt.style.use('seaborn-whitegrid')
@@ -51,8 +52,11 @@ def savitzky_golay(y, window_size, order, deriv=0, rate=1):
     y = np.concatenate((firstvals, y, lastvals))
     return np.convolve( m[::-1], y, mode='valid')
 
-path = ['f:/#Research/Injections_vs_DIP/output/Events_MPB_GRlist_v1.dat',
-        'f:/#Research/Injections_vs_DIP/data/RBSP/']
+pathCurrentFolder = str(pathlib.Path(__file__).parent.resolve())
+pathLen = len(pathCurrentFolder)
+pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
+path = [pathCurrentFolder+'output/Events_MPB_GRlist_v1.dat',
+        pathCurrentFolder+'data/RBSP/']
 head = ["YYYY"]
 dt = []
 dtime = []
