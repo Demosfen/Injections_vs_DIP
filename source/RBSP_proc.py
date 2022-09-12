@@ -6,16 +6,37 @@ Calculates S/C data for events lists
 @author: Alexander
 """
 
+import os
 from datetime import datetime
 from geopack import geopack, t89
 import matplotlib.pyplot as plt
 import numpy as np
 import pathlib
+import urllib.request
+import requests
 from spacepy import pycdf
 
 plt.style.use('seaborn-whitegrid')
 #from math import sqrt
 
+# ========================== Defs =================================
+    
+def file_exists(location):
+    request = requests.head(location)
+    return request.status_code == requests.codes.ok
+
+# ------------------------------------------
+
+def cdfDownload(url,cdfVersions):
+    for ii in range(len(cdfVersions)): 
+        if file_exists(url+cdfVersions[ii]+'.cdf'):
+            print("Downloading...")
+            urllib.request.urlretrieve(url+cdfVersions[ii]+'.cdf', rbspFilePath)
+            break
+        else:
+            continue
+    return print("Download complete! Created file: "+rbspFilePath)
+    
 # --- Function reading lists ---
 
 def io(path):
@@ -70,6 +91,7 @@ BYRBSP = []
 BZRBSP = []
 time = []
 plotTime = list(range(-600, 1800))
+cdfVersions = ['1.3.3', '1.3.4', '1.3.5', '1.3.6', '1.6.1','1.6.2','1.6.3', '1.7.1', '1.7.2', '1.7.3']
 
 # --- Reading events list ---
 
@@ -80,9 +102,41 @@ for i in range(len(events)):
         events[i].index(head[0])
     except ValueError:
         [YYYY, MM, DD, HH, MN, dt_event, VAPID, VAPMLT, RMLat, GID, GMLT, GMLat, ep, grsh, dtmpb, dmpb] = events[i].split()
-
+        rbspYearPath = path[1]+YYYY
+        rbspMonthPath = rbspYearPath + '/' + MM
+        rbspFilePath = rbspMonthPath + '/' +'rbsp-'+VAPID.lower()+'_magnetometer_4sec-gsm_emfisis-l3_'+YYYY+MM+DD+'.cdf'
+        url = 'https://cdaweb.gsfc.nasa.gov/pub/data/rbsp/rbsp'+VAPID.lower()+'/l3/emfisis/magnetometer/4sec/gsm/'+YYYY+'/rbsp-'+VAPID.lower()+'_magnetometer_4sec-gsm_emfisis-l3_'+YYYY+MM+DD+'_v'
+       
         # --- Reading RBSP file ---
+        
+        if not os.path.exists(rbspYearPath):
+            print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
+            print("Creating year folder...")
+            os.makedirs(path[1]+YYYY)
+            print("Creating month folder...")
+            os.makedirs(rbspMonthPath)
+            cdfDownload(url,cdfVersions)
+        elif not os.path.exists(rbspMonthPath):
+            print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
+            print("Creating month folder...")
+            os.makedirs(rbspMonthPath)
+            cdfDownload(url,cdfVersions)
+        else:
+            print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
+            print("Data folders for event "+YYYY+'/'+MM+'/'+DD+" found...")
+            print("Searching data file...")
+            continue
+        
+        if not os.path.exists(rbspFilePath):
+            print("RBSP file doesn't exist...")
+            print("Searching...")
+            cdfDownload(url,cdfVersions)
+        else:
+            print("Data file for "+YYYY+'/'+MM+'/'+DD+" found...\n")
+            continue
 
+                
+            
         rbsp = io(path[1]+YYYY+MM+DD+HH+MN+'.dat')
         
         for j in range(2,len(rbsp)):
