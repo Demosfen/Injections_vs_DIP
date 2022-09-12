@@ -7,6 +7,8 @@ Calculates S/C data for events lists
 """
 
 import os
+# https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/ - CDF library download here
+os.environ["CDF_LIB"] = 'C:/Program Files/CDF_Distribution/cdf38_1-dist/'
 from datetime import datetime
 from geopack import geopack, t89
 import matplotlib.pyplot as plt
@@ -14,7 +16,8 @@ import numpy as np
 import pathlib
 import urllib.request
 import requests
-#from spacepy import pycdf
+# To install spacepy in miniconda type: pip install spacepy
+import spacepy.pycdf as cdf
 
 plt.style.use('seaborn-whitegrid')
 #from math import sqrt
@@ -36,7 +39,7 @@ def cdfDownload(url,cdfVersions):
         else:
             continue
     return print("Download complete! Created file: "+rbspFilePath)
-    
+ 
 # --- Function reading lists ---
 
 def io(path):
@@ -88,7 +91,9 @@ if not os.path.exists(pathCurrentFolder+'data/'):
     os.makedirs(pathCurrentFolder+'data')
     os.makedirs(pathCurrentFolder+'data/MPB')
     os.makedirs(pathCurrentFolder+'data/RBSP')
+    os.makedirs(pathCurrentFolder+'data/RBSP/variations')
     os.makedirs(pathCurrentFolder+'data/GOES')
+    os.makedirs(pathCurrentFolder+'data/GOES/variations')
 if not os.path.exists(pathCurrentFolder+'output/'):
     print("Create /output folder...")
     os.makedirs(pathCurrentFolder+'output')
@@ -98,6 +103,9 @@ if not os.path.exists(pathCurrentFolder+'lists/'):
 if not os.path.exists(pathCurrentFolder+'graph/'): 
     print("Create /graph folder...")
     os.makedirs(pathCurrentFolder+'graph')
+if not os.path.exists(pathCurrentFolder+'data/RBSP/variations'): 
+    print("Create data/RBSP/variations folder...")
+    os.makedirs(pathCurrentFolder+'data/RBSP/variations')
 
 # --------- Define some variables -----------
 
@@ -159,51 +167,62 @@ for i in range(len(events)):
         else:
             print("Data file for "+YYYY+"/"+MM+"/"+DD+" found...\n")
             
-        rbsp = io(path[1]+YYYY+MM+DD+HH+MN+'.dat')
+        rbspCDF = cdf.CDF(rbspFilePath)
+        #print(rbspCDF)
+        Epoch = rbspCDF['Epoch'][...]
+        dataMag = rbspCDF['Mag'][...]
+        dataCoord = rbspCDF['coordinates'][...]
         
-        for j in range(2,len(rbsp)):
-            k = j-2
-            [DTime, X, Y, Z, BX, BY, BZ] = rbsp[j].split(', ')
-            DTime=DTime[:19]
-            dtime.append(DTime)
-            XGSM.append(float(X)/6371.15)
-            YGSM.append(float(Y)/6371.15)
-            ZGSM.append(float(Z)/6371.15)
-            time.append(datetime.strptime(DTime, '%Y-%m-%dT%H:%M:%S').timestamp())
-            if time[k] == float(dt_event): i_t0 = k                
-            ps = geopack.recalc(time[k])
-            bxigrf,byigrf,bzigrf = geopack.igrf_gsm(XGSM[k],YGSM[k],ZGSM[k])
-            bxigrf,bzigrf,byigrf = geopack.bcarsp(XGSM[k],YGSM[k],ZGSM[k],bxigrf,byigrf,bzigrf)
-            bxt89,byt89,bzt89 = t89.t89(2,ps,XGSM[k],YGSM[k],ZGSM[k])
-            bxt89,bzt89,byt89 = geopack.bcarsp(XGSM[k],YGSM[k],ZGSM[k],bxt89,byt89,bzt89)
-            HX,HZ,HY = geopack.bcarsp(XGSM[k],YGSM[k],ZGSM[k],float(BX),float(BY),float(BZ))
+        for dt in Epoch: time.append(dt.replace(second=0, microsecond=0).timestamp())
+        i_t0 = time.index(float(dt_event))
+        del time[:]
+        for dt in Epoch: time.append(dt.replace(microsecond=0).timestamp())
+        time = time[i_t0-900:i_t0+900]
+        XGSM = dataCoord[i_t0-900:i_t0+900,0]/6371.15
+        YGSM = dataCoord[i_t0-900:i_t0+900,1]/6371.15
+        ZGSM = dataCoord[i_t0-900:i_t0+900,2]/6371.15
+        BX = dataMag[i_t0-900:i_t0+900,0]
+        BY = dataMag[i_t0-900:i_t0+900,1]
+        BZ = dataMag[i_t0-900:i_t0+900,2]
+        
+        
+        for j in range(len(XGSM)):
+            ps = geopack.recalc(time[j])
+            bxigrf,byigrf,bzigrf = geopack.igrf_gsm(XGSM[j],YGSM[j],ZGSM[j])
+            bxigrf,bzigrf,byigrf = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],bxigrf,byigrf,bzigrf)
+            bxt89,byt89,bzt89 = t89.t89(2,ps,XGSM[j],YGSM[j],ZGSM[j])
+            bxt89,bzt89,byt89 = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],bxt89,byt89,bzt89)
+            HX,HZ,HY = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],float(BX[j]),float(BY[j]),float(BZ[j]))
             BXRBSP.append(HX-(bxigrf+bxt89))
             BYRBSP.append(HY-(byigrf+byt89))
             BZRBSP.append(HZ*(-1)-(bzigrf*(-1)+bzt89*(-1)))
             continue
         
-        BZRBSP_sm=savitzky_golay(BZRBSP, 61, 3)
+        #BZRBSP_sm=savitzky_golay(BZRBSP, 61, 3)
         
-        for l in range(len(BZRBSP_sm)): output.append(dtime[l]+' '+str(BZRBSP_sm[l]))
+        for l in range(len(BZRBSP)): output.append('%s %.2f %.2f %.2f %.2f %.2f %.2f' % (Epoch[l].replace(microsecond=0), XGSM[l], YGSM[l], ZGSM[l], BXRBSP[l], BYRBSP[l], BZRBSP[l]))
         
         fig = plt.figure()
         ax = plt.axes()
-        ax.plot(plotTime,BZRBSP[i_t0-600:i_t0+1800])
-        ax.plot(plotTime,BZRBSP_sm[i_t0-600:i_t0+1800])
+        ax.plot(time,BZRBSP)
+        #ax.plot(time,BZRBSP_sm[i_t0-600:i_t0+1800])
         plt.show()
         
-        file = open('f:/#Research/Injections_vs_DIP/data/RBSP/var_'+YYYY+MM+DD+HH+MN+'.dat','w')
-        file.write('YYYY MM DD HH MN BZRBSP')
+        file = open(pathCurrentFolder+'data/RBSP/variations/var_'+YYYY+MM+DD+HH+MN+'.dat','w')
+        file.write('YYYY MM DD HH MN SS     X   Y    Z    BX    BY   BZ')
         file.write('\n')
         for line in output:
             file.write(line)
             file.write('\n')
         file.close()
         
-        BZRBSP_sm = np.array(BZRBSP_sm).tolist()
-        del BXRBSP[:], BYRBSP[:], BZRBSP[:], BZRBSP_sm[:]
+        #BZRBSP_sm = np.array(BZRBSP_sm).tolist()
+        XGSM = XGSM.tolist()
+        YGSM = YGSM.tolist()
+        ZGSM = ZGSM.tolist()
+        del BXRBSP[:], BYRBSP[:], BZRBSP[:] #, BZRBSP_sm[:]
         del XGSM[:], YGSM[:], ZGSM[:]
-        del time[:], dtime[:]
+        del time[:] #, dtime[:]
         del output[:]
 
     else:
