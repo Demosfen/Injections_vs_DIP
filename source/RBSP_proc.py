@@ -14,7 +14,7 @@ import numpy as np
 import pathlib
 import urllib.request
 import requests
-from spacepy import pycdf
+#from spacepy import pycdf
 
 plt.style.use('seaborn-whitegrid')
 #from math import sqrt
@@ -28,7 +28,7 @@ def file_exists(location):
 # ------------------------------------------
 
 def cdfDownload(url,cdfVersions):
-    for ii in range(len(cdfVersions)): 
+    for ii in range(len(cdfVersions)):
         if file_exists(url+cdfVersions[ii]+'.cdf'):
             print("Downloading...")
             urllib.request.urlretrieve(url+cdfVersions[ii]+'.cdf', rbspFilePath)
@@ -45,7 +45,7 @@ def io(path):
     file.close()
     return data
 
-# --- Reading lists ---
+# --- Smooth algorithm ---
 
 def savitzky_golay(y, window_size, order, deriv=0, rate=1):
 
@@ -78,6 +78,29 @@ pathLen = len(pathCurrentFolder)
 pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
 path = [pathCurrentFolder+'output/Events_MPB_GRlist_v1.dat',
         pathCurrentFolder+'data/RBSP/']
+
+# =================================================================
+
+# --------- Generate project folders -----------
+
+if not os.path.exists(pathCurrentFolder+'data/'):
+    print("Create /data folder...")
+    os.makedirs(pathCurrentFolder+'data')
+    os.makedirs(pathCurrentFolder+'data/MPB')
+    os.makedirs(pathCurrentFolder+'data/RBSP')
+    os.makedirs(pathCurrentFolder+'data/GOES')
+if not os.path.exists(pathCurrentFolder+'output/'):
+    print("Create /output folder...")
+    os.makedirs(pathCurrentFolder+'output')
+if not os.path.exists(pathCurrentFolder+'lists/'): 
+    print("Create /lists folder...")
+    os.makedirs(pathCurrentFolder+'lists')
+if not os.path.exists(pathCurrentFolder+'graph/'): 
+    print("Create /graph folder...")
+    os.makedirs(pathCurrentFolder+'graph')
+
+# --------- Define some variables -----------
+
 head = ["YYYY"]
 dt = []
 dtime = []
@@ -93,7 +116,7 @@ time = []
 plotTime = list(range(-600, 1800))
 cdfVersions = ['1.3.3', '1.3.4', '1.3.5', '1.3.6', '1.6.1','1.6.2','1.6.3', '1.7.1', '1.7.2', '1.7.3']
 
-# --- Reading events list ---
+# -------------- Reading events list --------------------
 
 events = io(path[0])
 
@@ -102,12 +125,15 @@ for i in range(len(events)):
         events[i].index(head[0])
     except ValueError:
         [YYYY, MM, DD, HH, MN, dt_event, VAPID, VAPMLT, RMLat, GID, GMLT, GMLat, ep, grsh, dtmpb, dmpb] = events[i].split()
+        
+        # --------------- Paths ------------------
+        
         rbspYearPath = path[1]+YYYY
         rbspMonthPath = rbspYearPath + '/' + MM
         rbspFilePath = rbspMonthPath + '/' +'rbsp-'+VAPID.lower()+'_magnetometer_4sec-gsm_emfisis-l3_'+YYYY+MM+DD+'.cdf'
         url = 'https://cdaweb.gsfc.nasa.gov/pub/data/rbsp/rbsp'+VAPID.lower()+'/l3/emfisis/magnetometer/4sec/gsm/'+YYYY+'/rbsp-'+VAPID.lower()+'_magnetometer_4sec-gsm_emfisis-l3_'+YYYY+MM+DD+'_v'
        
-        # --- Reading RBSP file ---
+        # ---------- Checking/Downloading RBSP file ------------
         
         if not os.path.exists(rbspYearPath):
             print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
@@ -125,17 +151,13 @@ for i in range(len(events)):
             print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
             print("Data folders for event "+YYYY+'/'+MM+'/'+DD+" found...")
             print("Searching data file...")
-            continue
         
         if not os.path.exists(rbspFilePath):
             print("RBSP file doesn't exist...")
             print("Searching...")
             cdfDownload(url,cdfVersions)
         else:
-            print("Data file for "+YYYY+'/'+MM+'/'+DD+" found...\n")
-            continue
-
-                
+            print("Data file for "+YYYY+"/"+MM+"/"+DD+" found...\n")
             
         rbsp = io(path[1]+YYYY+MM+DD+HH+MN+'.dat')
         
