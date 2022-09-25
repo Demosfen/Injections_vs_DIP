@@ -1,0 +1,248 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Aug 17 10:09:15 2022
+Calculates S/C data for events lists
+
+@author: Alexander
+"""
+
+import os
+from datetime import datetime, timedelta
+from geopack import geopack, t89
+import matplotlib.pyplot as plt
+import numpy as np
+import pathlib
+import urllib.request
+import requests
+import netCDF4
+
+plt.style.use('seaborn-whitegrid')
+#from math import sqrt
+
+# ========================== Defs =================================
+    
+def file_exists(location):
+    request = requests.head(location)
+    return request.status_code == requests.codes.ok
+
+# ------------------------------------------
+"""
+def cdfDownload(url):
+    if file_exists(url):
+        print("Downloading...")
+        urllib.request.urlretrieve(url, goesFilePathLoc)
+    return print("Download complete! Created file: "+goesFilePathLoc)
+ """
+# --- Function reading lists ---
+
+def io(path):
+    file = open(path,'r')
+    data = file.readlines()
+    file.close()
+    return data
+
+# --- Smooth algorithm ---
+
+def savitzky_golay(y, window_size, order, deriv=0, rate=1):
+
+    import numpy as np
+    from math import factorial
+    
+    try:
+        window_size = np.abs(np.int(window_size))
+        order = np.abs(np.int(order))
+    except ValueError:
+        raise ValueError("window_size and order have to be of type int")
+    if window_size % 2 != 1 or window_size < 1:
+        raise TypeError("window_size size must be a positive odd number")
+    if window_size < order + 2:
+        raise TypeError("window_size is too small for the polynomials order")
+    order_range = range(order+1)
+    half_window = (window_size -1) // 2
+    # precompute coefficients
+    b = np.mat([[k**i for i in order_range] for k in range(-half_window, half_window+1)])
+    m = np.linalg.pinv(b).A[deriv] * rate**deriv * factorial(deriv)
+    # pad the signal at the extremes with
+    # values taken from the signal itself
+    firstvals = y[0] - np.abs( y[1:half_window+1][::-1] - y[0] )
+    lastvals = y[-1] + np.abs(y[-half_window-1:-1][::-1] - y[-1])
+    y = np.concatenate((firstvals, y, lastvals))
+    return np.convolve( m[::-1], y, mode='valid')
+
+pathCurrentFolder = str(pathlib.Path(__file__).parent.resolve())
+pathLen = len(pathCurrentFolder)
+pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
+
+# ================ PATH TO EVENTS LIST ============================
+
+path = [pathCurrentFolder+'output/Events_MPB_GRlist_v1.dat',
+        pathCurrentFolder+'data/GOES/']
+
+# =================================================================
+
+# --------- Generate project folders -----------
+
+if not os.path.exists(pathCurrentFolder+'data/'):
+    print("Create /data folder...")
+    os.makedirs(pathCurrentFolder+'data')
+    os.makedirs(pathCurrentFolder+'data/MPB')
+    os.makedirs(pathCurrentFolder+'data/RBSP')
+    os.makedirs(pathCurrentFolder+'data/RBSP/variations')
+    os.makedirs(pathCurrentFolder+'data/GOES')
+    os.makedirs(pathCurrentFolder+'data/GOES/variations')
+if not os.path.exists(pathCurrentFolder+'output/'):
+    print("Create /output folder...")
+    os.makedirs(pathCurrentFolder+'output')
+if not os.path.exists(pathCurrentFolder+'lists/'): 
+    print("Create /lists folder...")
+    os.makedirs(pathCurrentFolder+'lists')
+if not os.path.exists(pathCurrentFolder+'graph/'): 
+    print("Create /graph folder...")
+    os.makedirs(pathCurrentFolder+'graph')
+if not os.path.exists(pathCurrentFolder+'data/RBSP/variations'): 
+    print("Create data/RBSP/variations folder...")
+    os.makedirs(pathCurrentFolder+'data/RBSP/variations')
+
+# --------- Define some variables -----------
+
+head = ["YYYY"]
+dt = []
+dtime = []
+output = []
+mpb =[]
+XGSM = []
+YGSM = []
+ZGSM = []
+BXRBSP = []
+BYRBSP = []
+BZRBSP = []
+time = []
+plotTime = list(range(-600, 1800))
+baseTime = datetime(2000,1,1,12,0)
+
+# -------------- Reading events list --------------------
+
+events = io(path[0])
+
+for i in range(len(events)):
+    try:
+        events[i].index(head[0])
+    except ValueError:
+        [YYYY, MM, DD, HH, MN, dt_event, VAPID, VAPMLT, RMLat, GID, GMLT, GMLat, ep, grsh, dtmpb, dmpb] = events[i].split()
+        
+        # --------------- Paths ------------------
+        
+        goesYearPath = path[1]+YYYY
+        goesMonthPath = goesYearPath + '/' + MM
+        goesFilePath = goesMonthPath + '/' +'g'+GID.lower()+YYYY+'_magneto_512ms_'+YYYY+MM+DD+'_'+YYYY+MM+DD+'.csv'
+        goesFilePathLoc = goesMonthPath + '/dn_goes-l2-orb1m_g'+GID+'_y'+YYYY+'_v0_0.nc'
+        url = 'https://satdat.ngdc.noaa.gov/sem/goes/data/full/'+YYYY+'/'+MM+'/'+'goes'+GID.lower()+'/csv/g'+GID.lower()+'_magneto_512ms_'+YYYY+MM+DD+'_'+YYYY+MM+DD+'.csv'
+        url_loc = 'https://satdat.ngdc.noaa.gov/sem/goes/data/sat_locations/goes'+GID+'/dn_goes-l2-orb1m_g'+GID+'_y'+YYYY+'_v0_0.nc'
+       
+        # ---------- Checking/Downloading RBSP file ------------
+        
+        if not os.path.exists(goesYearPath):
+            print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
+            print("Creating year folder...")
+            os.makedirs(path[1]+YYYY)
+            print("Creating month folder...")
+            os.makedirs(goesMonthPath)
+            urllib.request.urlretrieve(url_loc, goesFilePath)
+            urllib.request.urlretrieve(url_loc, goesFilePathLoc)
+        elif not os.path.exists(goesMonthPath):
+            print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
+            print("Creating month folder...")
+            os.makedirs(goesMonthPath)
+            urllib.request.urlretrieve(url_loc, goesFilePath)
+            urllib.request.urlretrieve(url_loc, goesFilePathLoc)
+        else:
+            print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
+            print("Data folders for event "+YYYY+'/'+MM+'/'+DD+" found...")
+            print("Searching data file...")
+        
+        if not os.path.exists(goesFilePath):
+            print("GOES data file doesn't exist...")
+            print("Searching...")
+            urllib.request.urlretrieve(url_loc, goesFilePath)
+        else:
+            print("Data file for "+YYYY+"/"+MM+"/"+DD+" found...")
+            
+        if not os.path.exists(goesFilePathLoc):
+            print("GOES location file doesn't exist...")
+            print("Searching...")
+            urllib.request.urlretrieve(url_loc, goesFilePathLoc)
+        else:
+            print("Location file for "+YYYY+"/"+MM+"/"+DD+" found...\n")
+            
+        goes_field = io(path[1]+YYYY+MM+DD+'_g'+GID+'.csv')
+        locationDataset = netCDF4.Dataset(goesFilePathLoc)
+        xyzGSENC = locationDataset['gse_xyz']
+        timeLocNC = locationDataset['time']
+        timeLoc = timeLocNC[:]
+        locationTime = [None] * len(timeLoc)
+        xyzGSE = xyzGSENC[:]/6371.15
+        for k in range(len(timeLoc)): locationTime[k] = (baseTime+timedelta(seconds=timeLoc[k])).timestamp()
+        continue
+        #goes_loc = io(path[1]+YYYY+MM+DD+'_g'+GID+'_loc.dat')
+        '''
+        #print(rbspCDF)
+        Epoch = rbspCDF['Epoch'][...]
+        dataMag = rbspCDF['Mag'][...]
+        dataCoord = rbspCDF['coordinates'][...]
+        
+        for dt in Epoch: time.append(dt.replace(second=0, microsecond=0).timestamp())
+        i_t0 = time.index(float(dt_event))
+        del time[:]
+        for dt in Epoch: time.append(dt.replace(microsecond=0).timestamp())
+        time = time[i_t0-900:i_t0+900]
+        XGSM = dataCoord[i_t0-900:i_t0+900,0]/6371.15
+        YGSM = dataCoord[i_t0-900:i_t0+900,1]/6371.15
+        ZGSM = dataCoord[i_t0-900:i_t0+900,2]/6371.15
+        BX = dataMag[i_t0-900:i_t0+900,0]
+        BY = dataMag[i_t0-900:i_t0+900,1]
+        BZ = dataMag[i_t0-900:i_t0+900,2]
+        
+        
+        for j in range(len(XGSM)):
+            ps = geopack.recalc(time[j])
+            bxigrf,byigrf,bzigrf = geopack.igrf_gsm(XGSM[j],YGSM[j],ZGSM[j])
+            bxigrf,bzigrf,byigrf = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],bxigrf,byigrf,bzigrf)
+            bxt89,byt89,bzt89 = t89.t89(2,ps,XGSM[j],YGSM[j],ZGSM[j])
+            bxt89,bzt89,byt89 = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],bxt89,byt89,bzt89)
+            HX,HZ,HY = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],float(BX[j]),float(BY[j]),float(BZ[j]))
+            BXRBSP.append(HX-(bxigrf+bxt89))
+            BYRBSP.append(HY-(byigrf+byt89))
+            BZRBSP.append(HZ*(-1)-(bzigrf*(-1)+bzt89*(-1)))
+            continue
+        
+        #BZRBSP_sm=savitzky_golay(BZRBSP, 61, 3)
+        
+        for l in range(len(BZRBSP)): output.append('%s %.2f %.2f %.2f %.2f %.2f %.2f' % (Epoch[l].replace(microsecond=0), XGSM[l], YGSM[l], ZGSM[l], BXRBSP[l], BYRBSP[l], BZRBSP[l]))
+        
+        fig = plt.figure()
+        ax = plt.axes()
+        ax.plot(time,BZRBSP)
+        #ax.plot(time,BZRBSP_sm[i_t0-600:i_t0+1800])
+        plt.show()
+        
+        file = open(pathCurrentFolder+'data/RBSP/variations/var_'+YYYY+MM+DD+HH+MN+'.dat','w')
+        file.write('YYYY MM DD HH MN SS     X   Y    Z    BX    BY   BZ')
+        file.write('\n')
+        for line in output:
+            file.write(line)
+            file.write('\n')
+        file.close()
+        
+        #BZRBSP_sm = np.array(BZRBSP_sm).tolist()
+        XGSM = XGSM.tolist()
+        YGSM = YGSM.tolist()
+        ZGSM = ZGSM.tolist()
+        del BXRBSP[:], BYRBSP[:], BZRBSP[:] #, BZRBSP_sm[:]
+        del XGSM[:], YGSM[:], ZGSM[:]
+        del time[:] #, dtime[:]
+        del output[:]
+        '''
+
+    else:
+        continue
+    
