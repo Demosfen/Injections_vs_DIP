@@ -110,12 +110,13 @@ dt = []
 dtime = []
 output = []
 mpb =[]
-XGSM = []
-YGSM = []
-ZGSM = []
-BXRBSP = []
-BYRBSP = []
-BZRBSP = []
+XGSM = [] ; YGSM = [] ; ZGSM = []
+HP = [] ; HE = [] ; HN = []
+XGSE = []; YGSE = []; ZGSE = []
+time_field = []
+BXGOES = []
+BYGOES = []
+BZGOES = []
 time = []
 plotTime = list(range(-600, 1800))
 baseTime = datetime(2000,1,1,12,0)
@@ -147,13 +148,13 @@ for i in range(len(events)):
             os.makedirs(path[1]+YYYY)
             print("Creating month folder...")
             os.makedirs(goesMonthPath)
-            urllib.request.urlretrieve(url_loc, goesFilePath)
+            urllib.request.urlretrieve(url, goesFilePath)
             urllib.request.urlretrieve(url_loc, goesFilePathLoc)
         elif not os.path.exists(goesMonthPath):
             print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
             print("Creating month folder...")
             os.makedirs(goesMonthPath)
-            urllib.request.urlretrieve(url_loc, goesFilePath)
+            urllib.request.urlretrieve(url, goesFilePath)
             urllib.request.urlretrieve(url_loc, goesFilePathLoc)
         else:
             print("*** "+YYYY+'/'+MM+'/'+DD+" ***")
@@ -163,7 +164,7 @@ for i in range(len(events)):
         if not os.path.exists(goesFilePath):
             print("GOES data file doesn't exist...")
             print("Searching...")
-            urllib.request.urlretrieve(url_loc, goesFilePath)
+            urllib.request.urlretrieve(url, goesFilePath)
         else:
             print("Data file for "+YYYY+"/"+MM+"/"+DD+" found...")
             
@@ -174,74 +175,56 @@ for i in range(len(events)):
         else:
             print("Location file for "+YYYY+"/"+MM+"/"+DD+" found...\n")
             
-        goes_field = io(path[1]+YYYY+MM+DD+'_g'+GID+'.csv')
+# -------------- Reading data --------------------            
+            
+        goes_field = io(goesFilePath)
         locationDataset = netCDF4.Dataset(goesFilePathLoc)
         xyzGSENC = locationDataset['gse_xyz']
         timeLocNC = locationDataset['time']
         timeLoc = timeLocNC[:]
         locationTime = [None] * len(timeLoc)
         xyzGSE = xyzGSENC[:]/6371.15
+        
         for k in range(len(timeLoc)): locationTime[k] = (baseTime+timedelta(seconds=timeLoc[k])).timestamp()
-        continue
-        #goes_loc = io(path[1]+YYYY+MM+DD+'_g'+GID+'_loc.dat')
-        '''
-        #print(rbspCDF)
-        Epoch = rbspCDF['Epoch'][...]
-        dataMag = rbspCDF['Mag'][...]
-        dataCoord = rbspCDF['coordinates'][...]
-        
-        for dt in Epoch: time.append(dt.replace(second=0, microsecond=0).timestamp())
-        i_t0 = time.index(float(dt_event))
-        del time[:]
-        for dt in Epoch: time.append(dt.replace(microsecond=0).timestamp())
-        time = time[i_t0-900:i_t0+900]
-        XGSM = dataCoord[i_t0-900:i_t0+900,0]/6371.15
-        YGSM = dataCoord[i_t0-900:i_t0+900,1]/6371.15
-        ZGSM = dataCoord[i_t0-900:i_t0+900,2]/6371.15
-        BX = dataMag[i_t0-900:i_t0+900,0]
-        BY = dataMag[i_t0-900:i_t0+900,1]
-        BZ = dataMag[i_t0-900:i_t0+900,2]
-        
-        
-        for j in range(len(XGSM)):
-            ps = geopack.recalc(time[j])
-            bxigrf,byigrf,bzigrf = geopack.igrf_gsm(XGSM[j],YGSM[j],ZGSM[j])
-            bxigrf,bzigrf,byigrf = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],bxigrf,byigrf,bzigrf)
-            bxt89,byt89,bzt89 = t89.t89(2,ps,XGSM[j],YGSM[j],ZGSM[j])
-            bxt89,bzt89,byt89 = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],bxt89,byt89,bzt89)
-            HX,HZ,HY = geopack.bcarsp(XGSM[j],YGSM[j],ZGSM[j],float(BX[j]),float(BY[j]),float(BZ[j]))
-            BXRBSP.append(HX-(bxigrf+bxt89))
-            BYRBSP.append(HY-(byigrf+byt89))
-            BZRBSP.append(HZ*(-1)-(bzigrf*(-1)+bzt89*(-1)))
+        i_t0 = locationTime.index(float(dt_event))
+
+# -------------- Reading events list --------------------
+
+        for j in range(596,len(goes_field)):
+            k = j-596
+            [DTime, 
+             BX1Q,BX1,BY1Q,BY1,BZ1Q,BZ1,
+             BXSC1Q,BXSC1,BYSC1Q,BYSC1,BZSC1Q,BZSC1,BTSC1Q,BTSC1,
+             BX2Q,BX2,BY2Q,BY2,BZ2Q,BZ2,
+             BXSC2Q,BXSC2,BYSC2Q,BYSC2,BZSC2Q,BZSC2,BTSC2Q,BTSC2,
+             HP1Q,HP1,HE1Q,HE1,HN1Q,HN1,HT1Q,HT1,
+             HP2Q,HP2,HE2Q,HE2,HN2Q,HN2,HT2Q,HT_2] = goes_field[j].split(',')
+            
+            HP.append(float(HP2))
+            HE.append(float(HE2))
+            HN.append(float(HN2))
+            time_field.append(datetime.strptime(DTime, '%Y-%m-%d %H:%M:%S.%f').timestamp())
             continue
         
-        #BZRBSP_sm=savitzky_golay(BZRBSP, 61, 3)
+        dtime0 = datetime.strptime(YYYY+'-'+MM+'-'+DD+" 00:00:00", '%Y-%m-%d %H:%M:%S').timestamp()
+        dtime1 = datetime.strptime(YYYY+'-'+MM+'-'+DD+" 23:59:00", '%Y-%m-%d %H:%M:%S').timestamp()
+        x = np.arange(dtime0,dtime1,60,'float')
         
-        for l in range(len(BZRBSP)): output.append('%s %.2f %.2f %.2f %.2f %.2f %.2f' % (Epoch[l].replace(microsecond=0), XGSM[l], YGSM[l], ZGSM[l], BXRBSP[l], BYRBSP[l], BZRBSP[l]))
+        HP_min = np.interp(x, time_field,HP)
+        HE_min = np.interp(x, time_field,HE)
+        HN_min = np.interp(x, time_field,HN)
         
-        fig = plt.figure()
-        ax = plt.axes()
-        ax.plot(time,BZRBSP)
-        #ax.plot(time,BZRBSP_sm[i_t0-600:i_t0+1800])
-        plt.show()
-        
-        file = open(pathCurrentFolder+'data/RBSP/variations/var_'+YYYY+MM+DD+HH+MN+'.dat','w')
-        file.write('YYYY MM DD HH MN SS     X   Y    Z    BX    BY   BZ')
-        file.write('\n')
-        for line in output:
-            file.write(line)
-            file.write('\n')
-        file.close()
-        
-        #BZRBSP_sm = np.array(BZRBSP_sm).tolist()
-        XGSM = XGSM.tolist()
-        YGSM = YGSM.tolist()
-        ZGSM = ZGSM.tolist()
-        del BXRBSP[:], BYRBSP[:], BZRBSP[:] #, BZRBSP_sm[:]
-        del XGSM[:], YGSM[:], ZGSM[:]
-        del time[:] #, dtime[:]
-        del output[:]
-        '''
+        for j in range(1, len(xyzGSE)):
+            #[Date, Time, X, Y, Z] = goes_loc[j].split()
+            #DTime=Date+'T'+Time
+            #time_loc.append(datetime.strptime(DTime, '%d-%m-%YT%H:%M:%S.%f').timestamp())
+            #XGSE.append(float(X))
+            #YGSE.append(float(Y))
+            #ZGSE.append(float(Z))
+            continue
+        #XGSM_min = np.interp(x, time_loc,XGSM)
+        #YGSM_min = np.interp(x, time_loc,YGSM)
+        #ZGSM_min = np.interp(x, time_loc,ZGSM)
 
     else:
         continue
