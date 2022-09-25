@@ -75,7 +75,7 @@ pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
 
 # ================ PATH TO EVENTS LIST ============================
 
-path = [pathCurrentFolder+'output/Events_MPB_GRlist_v1.dat',
+path = [pathCurrentFolder+'output/Events_MPB_SHlist_v1.dat',
         pathCurrentFolder+'data/GOES/']
 
 # =================================================================
@@ -99,9 +99,9 @@ if not os.path.exists(pathCurrentFolder+'lists/'):
 if not os.path.exists(pathCurrentFolder+'graph/'): 
     print("Create /graph folder...")
     os.makedirs(pathCurrentFolder+'graph')
-if not os.path.exists(pathCurrentFolder+'data/RBSP/variations'): 
-    print("Create data/RBSP/variations folder...")
-    os.makedirs(pathCurrentFolder+'data/RBSP/variations')
+if not os.path.exists(pathCurrentFolder+'data/GOES/variations'): 
+    print("Create data/GOES/variations folder...")
+    os.makedirs(pathCurrentFolder+'data/GOES/variations')
 
 # --------- Define some variables -----------
 
@@ -110,13 +110,11 @@ dt = []
 dtime = []
 output = []
 mpb =[]
-XGSM = [] ; YGSM = [] ; ZGSM = []
+XGSM_min = [] ; YGSM_min = [] ; ZGSM_min = []
 HP = [] ; HE = [] ; HN = []
 XGSE = []; YGSE = []; ZGSE = []
 time_field = []
-BXGOES = []
-BYGOES = []
-BZGOES = []
+HXGOES = [] ; HYGOES = [] ; HZGOES = []
 time = []
 plotTime = list(range(-600, 1800))
 baseTime = datetime(2000,1,1,12,0)
@@ -184,9 +182,7 @@ for i in range(len(events)):
         timeLoc = timeLocNC[:]
         locationTime = [None] * len(timeLoc)
         xyzGSE = xyzGSENC[:]/6371.15
-        
         for k in range(len(timeLoc)): locationTime[k] = (baseTime+timedelta(seconds=timeLoc[k])).timestamp()
-        i_t0 = locationTime.index(float(dt_event))
 
 # -------------- Reading events list --------------------
 
@@ -207,6 +203,7 @@ for i in range(len(events)):
             continue
         
         dtime0 = datetime.strptime(YYYY+'-'+MM+'-'+DD+" 00:00:00", '%Y-%m-%d %H:%M:%S').timestamp()
+        i_t0 = locationTime.index(dtime0)
         dtime1 = datetime.strptime(YYYY+'-'+MM+'-'+DD+" 23:59:00", '%Y-%m-%d %H:%M:%S').timestamp()
         x = np.arange(dtime0,dtime1,60,'float')
         
@@ -214,18 +211,42 @@ for i in range(len(events)):
         HE_min = np.interp(x, time_field,HE)
         HN_min = np.interp(x, time_field,HN)
         
-        for j in range(1, len(xyzGSE)):
-            #[Date, Time, X, Y, Z] = goes_loc[j].split()
-            #DTime=Date+'T'+Time
-            #time_loc.append(datetime.strptime(DTime, '%d-%m-%YT%H:%M:%S.%f').timestamp())
-            #XGSE.append(float(X))
-            #YGSE.append(float(Y))
-            #ZGSE.append(float(Z))
-            continue
-        #XGSM_min = np.interp(x, time_loc,XGSM)
-        #YGSM_min = np.interp(x, time_loc,YGSM)
-        #ZGSM_min = np.interp(x, time_loc,ZGSM)
+        for j in range(len(HP_min)):
+            ps = geopack.recalc(x[j])
+            XGSM, YGSM, ZGSM = geopack.gsmgse(xyzGSE[i_t0+j,0], xyzGSE[i_t0+j,1], xyzGSE[i_t0+j,2], -1)
+            bxigrf,byigrf,bzigrf = geopack.igrf_gsm(XGSM,YGSM,ZGSM)
+            heigrf,hpigrf,hnigrf = geopack.bcarsp(XGSM,YGSM,ZGSM,bxigrf,byigrf,bzigrf)
+            bxt89,byt89,bzt89 = t89.t89(2,ps,XGSM,YGSM,ZGSM)
+            het89,hpt89,hnt89 = geopack.bcarsp(XGSM,YGSM,ZGSM,bxt89,byt89,bzt89)
+            r,theta,phi = geopack.sphcar(XGSM,YGSM,ZGSM,-1)
+            BXGEO,BYGEO,BZGEO = geopack.bspcar(theta, phi, HE_min[j], HP_min[j]*(-1), HN_min[j])
+            BXGSM,BYGSM,BZGSM = geopack.geogsm(BXGEO, BYGEO, BZGEO, 1)
+            HXGSM,HZGSM,HYGSM = geopack.bcarsp(XGSM,YGSM,ZGSM, BXGSM,BYGSM,BZGSM)
+            HXGOES.append(HXGSM-(het89+heigrf))
+            HYGOES.append(HYGSM-(hnt89+hnigrf))
+            HZGOES.append(HZGSM*(-1)-(hpt89*(-1)+hpigrf*(-1)))
+            XGSM_min.append(XGSM) ; YGSM_min.append(YGSM) ; ZGSM_min.append(ZGSM)
 
+        for j in range(len(HP_min)): output.append(datetime.fromtimestamp(x[j]).strftime('%Y-%m-%dT%H:%M:%S')+' '+str(HXGOES[j])+' '+str(HYGOES[j])+' '+str(HZGOES[j]))
+        
+        fig = plt.figure()
+        ax = plt.axes()
+        ax.plot(x,HZGOES)
+        plt.show()
+        
+        file = open('f:/#Research/Injections_vs_DIP/data/GOES/variations/var_'+YYYY+MM+DD+'.dat','w')
+        file.write('Epoch               HXGSM  HYGSM  HZGSM')
+        file.write('\n')
+        for line in output:
+            file.write(line)
+            file.write('\n')
+        file.close()
+        
+        del HP[:], HE[:], HN[:], HXGOES[:], HYGOES[:], HZGOES[:]
+        del XGSM_min[:], YGSM_min[:], ZGSM_min[:]
+        del time_field[:]
+        del output[:]
+        
     else:
         continue
     
