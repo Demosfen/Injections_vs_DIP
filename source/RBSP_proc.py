@@ -79,7 +79,7 @@ def savitzky_golay(y, window_size, order, deriv=0, rate=1):
 pathCurrentFolder = str(pathlib.Path(__file__).parent.resolve())
 pathLen = len(pathCurrentFolder)
 pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
-path = [pathCurrentFolder+'output/Events_MPB_SHlist_v1.dat',
+path = [pathCurrentFolder+'output/Events_MPB_GRlist_v1.dat',
         pathCurrentFolder+'data/RBSP/']
 
 # =================================================================
@@ -114,12 +114,8 @@ dt = []
 dtime = []
 output = []
 mpb =[]
-XGSM = []
-YGSM = []
-ZGSM = []
-BXRBSP = []
-BYRBSP = []
-BZRBSP = []
+XGSM = [] ; YGSM = [] ; ZGSM = []
+BXRBSP = [] ; BYRBSP = [] ; BZRBSP = []
 time = []
 plotTime = list(range(-600, 1800))
 cdfVersions = ['1.3.3', '1.3.4', '1.3.5', '1.3.6', '1.6.1','1.6.2','1.6.3', '1.7.1', '1.7.2', '1.7.3']
@@ -197,10 +193,10 @@ for i in range(len(events)):
             BYRBSP.append(HY-(byigrf+byt89))
             BZRBSP.append(HZ*(-1)-(bzigrf*(-1)+bzt89*(-1)))
             continue
-        
-        #BZRBSP_sm=savitzky_golay(BZRBSP, 61, 3)
-        
-        for l in range(len(BZRBSP)): output.append('%s %.2f %.2f %.2f %.2f %.2f %.2f' % (Epoch[l].replace(microsecond=0), XGSM[l], YGSM[l], ZGSM[l], BXRBSP[l], BYRBSP[l], BZRBSP[l]))
+
+        for l in range(len(BZRBSP)): 
+            dateTime = datetime.fromtimestamp(time[l]).strftime('%Y-%m-%d/%H:%M:%S')
+            output.append('%s %.2f %.2f %.2f %.2f %.2f %.2f' % (dateTime, XGSM[l], YGSM[l], ZGSM[l], BXRBSP[l], BYRBSP[l], BZRBSP[l]))
         
         fig = plt.figure()
         ax = plt.axes()
@@ -209,7 +205,7 @@ for i in range(len(events)):
         plt.show()
         
         file = open(pathCurrentFolder+'data/RBSP/variations/var_'+YYYY+MM+DD+HH+MN+'.dat','w')
-        file.write('YYYY MM DD HH MN SS     X   Y    Z    BX    BY   BZ')
+        file.write('YYYY-MM-DD/HH:MN:SS     X   Y    Z    BX    BY   BZ')
         file.write('\n')
         for line in output:
             file.write(line)

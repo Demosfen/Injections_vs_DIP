@@ -75,7 +75,7 @@ pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
 
 # ================ PATH TO EVENTS LIST ============================
 
-path = [pathCurrentFolder+'output/Events_MPB_SHlist_v1.dat',
+path = [pathCurrentFolder+'output/Events_MPB_GRlist_v1.dat',
         pathCurrentFolder+'data/GOES/']
 
 # =================================================================
@@ -227,7 +227,7 @@ for i in range(len(events)):
             HZGOES.append(HZGSM*(-1)-(hpt89*(-1)+hpigrf*(-1)))
             XGSM_min.append(XGSM) ; YGSM_min.append(YGSM) ; ZGSM_min.append(ZGSM)
 
-        for j in range(len(HP_min)): output.append(datetime.fromtimestamp(x[j]).strftime('%Y-%m-%dT%H:%M:%S')+' '+str(HXGOES[j])+' '+str(HYGOES[j])+' '+str(HZGOES[j]))
+        for j in range(len(HP_min)): output.append(datetime.fromtimestamp(x[j]).strftime('%Y-%m-%d/%H:%M:%S')+' '+str(HXGOES[j])+' '+str(HYGOES[j])+' '+str(HZGOES[j]))
         
         fig = plt.figure()
         ax = plt.axes()
