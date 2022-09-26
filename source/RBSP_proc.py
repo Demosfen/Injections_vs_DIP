@@ -79,7 +79,7 @@ def savitzky_golay(y, window_size, order, deriv=0, rate=1):
 pathCurrentFolder = str(pathlib.Path(__file__).parent.resolve())
 pathLen = len(pathCurrentFolder)
 pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
-path = [pathCurrentFolder+'output/Events_MPB_GRlist_v1.dat',
+path = [pathCurrentFolder+'output/Events_MPB_SHlist_v1.dat',
         pathCurrentFolder+'data/RBSP/']
 
 # =================================================================
@@ -204,7 +204,7 @@ for i in range(len(events)):
         #ax.plot(time,BZRBSP_sm[i_t0-600:i_t0+1800])
         plt.show()
         
-        file = open(pathCurrentFolder+'data/RBSP/variations/var_'+YYYY+MM+DD+HH+MN+'.dat','w')
+        file = open(pathCurrentFolder+'data/RBSP/variations/VAP'+VAPID+'_'+YYYY+MM+DD+HH+MN+'.dat','w')
         file.write('YYYY-MM-DD/HH:MN:SS     X   Y    Z    BX    BY   BZ')
         file.write('\n')
         for line in output:
