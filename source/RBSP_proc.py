@@ -79,7 +79,7 @@ def savitzky_golay(y, window_size, order, deriv=0, rate=1):
 pathCurrentFolder = str(pathlib.Path(__file__).parent.resolve())
 pathLen = len(pathCurrentFolder)
 pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
-path = [pathCurrentFolder+'output/Events_MPB_SHlist_v1.dat',
+path = [pathCurrentFolder+'output/Events_v1.dat',
         pathCurrentFolder+'data/RBSP/']
 
 # =================================================================

@@ -75,7 +75,7 @@ pathCurrentFolder = pathCurrentFolder[:pathLen-6].replace("\\", '/')
 
 # ================ PATH TO EVENTS LIST ============================
 
-path = [pathCurrentFolder+'output/Events_MPB_SHlist_v1.dat',
+path = [pathCurrentFolder+'output/Events_v1.dat',
         pathCurrentFolder+'data/GOES/']
 
 # =================================================================
@@ -234,7 +234,7 @@ for i in range(len(events)):
         ax.plot(x,HZGOES)
         plt.show()
         
-        file = open('f:/#Research/Injections_vs_DIP/data/GOES/variations/G'+GID+'_'+YYYY+MM+DD+HH+MN+'.dat','w')
+        file = open(pathCurrentFolder+'data/GOES/variations/G'+GID+'_'+YYYY+MM+DD+HH+MN+'.dat','w')
         file.write('Epoch               HXGSM  HYGSM  HZGSM')
         file.write('\n')
         for line in output:
