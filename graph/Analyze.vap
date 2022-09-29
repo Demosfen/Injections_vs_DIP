@@ -50,7 +50,7 @@
                 <property class="Column" length="0" name="columns"/>
                 <property name="fitted" type="Boolean" value="true"/>
                 <property default="sans-10" name="font" type="String" value="Dialog-9"/>
-                <property default="480" name="height" type="Integer" value="674"/>
+                <property default="480" name="height" type="Integer" value="938"/>
                 <property name="marginColumn" type="DomNode">
                     <Column id="marginColumn_0">
                         <property default="2em" name="left"
@@ -72,48 +72,48 @@
                 <property class="Row" length="6" name="rows">
                     <Row id="row_15">
                         <property default="+100%-2em" name="bottom"
-                            type="String" value="15.30%-1.7em"/>
+                            type="String" value="15.90%-1.7em"/>
                         <property default="" name="parent" type="String" value="marginRow_0"/>
                         <property default="+2em" name="top"
-                            type="String" value="0%"/>
+                            type="String" value="0.00%+0.0em"/>
                     </Row>
                     <Row id="row_17">
                         <property default="+100%-2em" name="bottom"
-                            type="String" value="33.30%-1.7em"/>
+                            type="String" value="33.80%-1.7em"/>
                         <property default="" name="parent" type="String" value="marginRow_0"/>
                         <property default="+2em" name="top"
-                            type="String" value="15.30%+2.0em"/>
+                            type="String" value="15.90%+2.0em"/>
                     </Row>
                     <Row id="row_5">
                         <property default="+100%-2em" name="bottom"
-                            type="String" value="49.20%-1.7em"/>
+                            type="String" value="49.70%-1.7em"/>
                         <property default="" name="parent" type="String" value="marginRow_0"/>
                         <property default="+2em" name="top"
-                            type="String" value="33.30%"/>
+                            type="String" value="33.80%"/>
                     </Row>
                     <Row id="row_9">
                         <property default="+100%-2em" name="bottom"
-                            type="String" value="65.20%-1.7em"/>
+                            type="String" value="65.60%-1.7em"/>
                         <property default="" name="parent" type="String" value="marginRow_0"/>
                         <property default="+2em" name="top"
-                            type="String" value="49.20%"/>
+                            type="String" value="49.70%"/>
                     </Row>
                     <Row id="row_11">
                         <property default="+100%-2em" name="bottom"
-                            type="String" value="81.30%-1.7em"/>
+                            type="String" value="81.60%-1.7em"/>
                         <property default="" name="parent" type="String" value="marginRow_0"/>
                         <property default="+2em" name="top"
-                            type="String" value="65.20%"/>
+                            type="String" value="65.60%"/>
                     </Row>
                     <Row id="row_13">
                         <property default="+100%-2em" name="bottom"
                             type="String" value="100.00%-4.2em"/>
                         <property default="" name="parent" type="String" value="marginRow_0"/>
                         <property default="+2em" name="top"
-                            type="String" value="81.30%"/>
+                            type="String" value="81.60%"/>
                     </Row>
                 </property>
-                <property default="640" name="width" type="Integer" value="1529"/>
+                <property default="640" name="width" type="Integer" value="1913"/>
             </Canvas>
         </property>
         <property class="Connector" length="0" name="connectors"/>
@@ -121,271 +121,271 @@
             <DataSourceFilter id="data_3">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,4]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,4]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_4">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,5]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,5]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_5">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,6]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,6]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_6">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,7]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,7]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_7">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,8]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,8]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_8">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,9]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,9]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_9">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,10]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,10]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_10">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,12]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,12]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_11">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,13]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,13]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_12">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,14]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=MAGEIS&amp;id=FESA[:,14]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_15">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,4]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,4]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_16">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,5]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,5]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_17">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,6]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,6]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_18">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,7]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,7]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_19">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,8]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,8]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_20">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,9]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,9]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_21">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,10]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,10]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_22">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,12]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,12]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_23">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,13]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,13]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_24">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,14]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FESA[:,14]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_25">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,0]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,0]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_26">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,1]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,1]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_27">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,2]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,2]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_28">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,3]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,3]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_29">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,4]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,4]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_30">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,5]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,5]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_31">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,6]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,6]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_32">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,7]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,7]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_33">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,8]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,8]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_34">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,10]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,10]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_35">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,13]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,13]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_36">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,14]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPA_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,14]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_37">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,0]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,0]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_38">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,1]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,1]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_39">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,2]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,2]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_40">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,3]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,3]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_41">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,4]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,4]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_42">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,6]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,6]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_43">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,9]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,9]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_44">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,11]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,11]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_45">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,13]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,13]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_46">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,14]&amp;timerange=2015-01-05+4:00+to+7:00"/>
+                <property default="" name="uri" type="String" value="vap+cdaweb:ds=RBSPB_REL03_ECT-MAGEIS-L2&amp;filter=mageis&amp;id=FPSA[:,14]&amp;timerange=2013-06-29+5:00+to+8:00"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_47">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+dat:file:/F:/Injections_vs_DIP/data/MPB/2015.dat?column=field1&amp;depend0=field0"/>
+                <property default="" name="uri" type="String" value="vap+dat:file:/F:/Injections_vs_DIP/data/MPB/2013.dat?column=field1&amp;depend0=field0"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_48">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+dat:file:/F:/Injections_vs_DIP/data/GOES/variations/G13_201501050542.dat?column=HZGSM&amp;depend0=Epoch"/>
+                <property default="" name="uri" type="String" value="vap+dat:file:/F:/Injections_vs_DIP/data/GOES/variations/G15_201306290637.dat?column=HZGSM&amp;depend0=Epoch"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
             <DataSourceFilter id="data_49">
                 <property name="fill" type="String" value=""/>
                 <property name="filters" type="String" value=""/>
-                <property default="" name="uri" type="String" value="vap+dat:file:/F:/Injections_vs_DIP/data/RBSP/variations/VAPB_201501050542.dat?column=BZ&amp;depend0=field0"/>
+                <property default="" name="uri" type="String" value="vap+dat:file:/F:/Injections_vs_DIP/data/RBSP/variations/VAPA_201306290637.dat?column=BZ&amp;depend0=field0"/>
                 <property name="validRange" type="String" value=""/>
             </DataSourceFilter>
         </property>
@@ -441,8 +441,7 @@
                 <property name="active" type="Boolean" value="true"/>
                 <property default="false" name="autoComponent"
                     type="Boolean" value="true"/>
-                <property default="false" name="autoLabel"
-                    type="Boolean" value="true"/>
+                <property name="autoLabel" type="Boolean" value="false"/>
                 <property default="false" name="autoRenderType"
                     type="Boolean" value="true"/>
                 <property name="cadenceCheck" type="Boolean" value="true"/>
@@ -451,7 +450,7 @@
                     type="String" value="data_3"/>
                 <property default="false" name="displayLegend"
                     type="Boolean" value="true"/>
-                <property default="" name="legendLabel" type="String" value="MagEIS_FESA (cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N)"/>
+                <property default="" name="legendLabel" type="String" value="32 keV"/>
                 <property name="parent" type="String" value=""/>
                 <property name="plotDefaults" type="DomNode">
                     <Plot id="plot_defaults_3">
@@ -492,11 +491,11 @@
                                 <property name="log" type="Boolean" value="false"/>
                                 <property name="opposite" type="Boolean" value="false"/>
                                 <property name="range" type="datumRange">
-                                    <datumRange units="us2000" value="2015-01-05 4:00 to 7:00"/>
+                                    <datumRange units="us2000" value="2013-06-29 5:00 to 8:00"/>
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="microseconds: 7.74750E6"/>
+                                    name="scale" type="datum" value="microseconds: 6.07420E6"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property name="visible" type="Boolean" value="true"/>
@@ -526,7 +525,7 @@
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="log10Ratio: 0.041637"/>
+                                    name="scale" type="datum" value="log10Ratio: 0.044040"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property name="visible" type="Boolean" value="true"/>
@@ -553,7 +552,7 @@
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="1.1364 (dimensionless)"/>
+                                    name="scale" type="datum" value="0.76923 (dimensionless)"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property default="true" name="visible"
@@ -597,8 +596,7 @@
                 <property name="active" type="Boolean" value="true"/>
                 <property default="false" name="autoComponent"
                     type="Boolean" value="true"/>
-                <property default="false" name="autoLabel"
-                    type="Boolean" value="true"/>
+                <property name="autoLabel" type="Boolean" value="false"/>
                 <property default="false" name="autoRenderType"
                     type="Boolean" value="true"/>
                 <property name="cadenceCheck" type="Boolean" value="true"/>
@@ -607,7 +605,7 @@
                     type="String" value="data_4"/>
                 <property default="false" name="displayLegend"
                     type="Boolean" value="true"/>
-                <property default="" name="legendLabel" type="String" value="MagEIS_FESA (cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N)"/>
+                <property default="" name="legendLabel" type="String" value="54  keV"/>
                 <property name="parent" type="String" value=""/>
                 <property name="plotDefaults" type="DomNode">
                     <Plot id="plot_defaults_4">
@@ -6890,11 +6888,11 @@
                                 <property name="log" type="Boolean" value="false"/>
                                 <property name="opposite" type="Boolean" value="false"/>
                                 <property name="range" type="datumRange">
-                                    <datumRange units="us2000" value="2014-12-31 through 2016-01-10"/>
+                                    <datumRange units="us2000" value="2012-12-31 through 2014-01-10"/>
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="microseconds: 1.03300E7"/>
+                                    name="scale" type="datum" value="microseconds: 6.07420E6"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property name="visible" type="Boolean" value="true"/>
@@ -6919,11 +6917,11 @@
                                     type="Boolean" value="true"/>
                                 <property name="opposite" type="Boolean" value="false"/>
                                 <property name="range" type="datumRange">
-                                    <datumRange units="" value="0.5 to 200.0 "/>
+                                    <datumRange units="" value="0.4 to 70.0 "/>
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="log10Ratio: 0.027025"/>
+                                    name="scale" type="datum" value="log10Ratio: 0.018236"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property name="visible" type="Boolean" value="true"/>
@@ -6950,7 +6948,7 @@
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="1.2048 (dimensionless)"/>
+                                    name="scale" type="datum" value="0.81301 (dimensionless)"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property default="true" name="visible"
@@ -7044,11 +7042,11 @@
                                 <property name="log" type="Boolean" value="false"/>
                                 <property name="opposite" type="Boolean" value="false"/>
                                 <property name="range" type="datumRange">
-                                    <datumRange units="us2000" value="2015-01-04 23:00 to 2015-01-06 00:00"/>
+                                    <datumRange units="us2000" value="2013-06-28 23:00 to 2013-06-30 00:00"/>
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="microseconds: 1.03300E7"/>
+                                    name="scale" type="datum" value="microseconds: 6.07420E6"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property name="visible" type="Boolean" value="true"/>
@@ -7072,11 +7070,11 @@
                                 <property name="log" type="Boolean" value="false"/>
                                 <property name="opposite" type="Boolean" value="false"/>
                                 <property name="range" type="datumRange">
-                                    <datumRange units="" value="-84.54446952247493 to 22.548247249542868"/>
+                                    <datumRange units="" value="-64.95201865830353 to 53.451995382943295"/>
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="1.2259 (dimensionless)"/>
+                                    name="scale" type="datum" value="0.53954 (dimensionless)"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property name="visible" type="Boolean" value="true"/>
@@ -7103,7 +7101,7 @@
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="1.1905 (dimensionless)"/>
+                                    name="scale" type="datum" value="0.76923 (dimensionless)"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property default="true" name="visible"
@@ -7199,11 +7197,11 @@
                                 <property name="log" type="Boolean" value="false"/>
                                 <property name="opposite" type="Boolean" value="false"/>
                                 <property name="range" type="datumRange">
-                                    <datumRange units="us2000" value="2015-01-05 4:40 to 6:45"/>
+                                    <datumRange units="us2000" value="2013-06-29 5:35 to 7:40"/>
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="microseconds: 7.74750E6"/>
+                                    name="scale" type="datum" value="microseconds: 6.07420E6"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property name="visible" type="Boolean" value="true"/>
@@ -7227,11 +7225,11 @@
                                 <property name="log" type="Boolean" value="false"/>
                                 <property name="opposite" type="Boolean" value="false"/>
                                 <property name="range" type="datumRange">
-                                    <datumRange units="" value="-41.2515 to -22.5185 "/>
+                                    <datumRange units="" value="-47.11 to 18.67 "/>
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="1.2259 (dimensionless)"/>
+                                    name="scale" type="datum" value="0.53954 (dimensionless)"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property name="visible" type="Boolean" value="true"/>
@@ -7258,7 +7256,7 @@
                                 </property>
                                 <property name="reference" type="String" value=""/>
                                 <property default="0.1 (dimensionless)"
-                                    name="scale" type="datum" value="1.1905 (dimensionless)"/>
+                                    name="scale" type="datum" value="0.76923 (dimensionless)"/>
                                 <property name="tickValues"
                                     type="String" value=""/>
                                 <property default="true" name="visible"
@@ -7334,11 +7332,11 @@
                         <property name="log" type="Boolean" value="false"/>
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
-                            <datumRange units="us2000" value="2015-01-05 4:00 to 7:00"/>
+                            <datumRange units="us2000" value="2013-06-29 5:00 to 8:00"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="microseconds: 7.74750E6"/>
+                            name="scale" type="datum" value="microseconds: 6.07420E6"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7357,11 +7355,11 @@
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
                             <datumRange
-                                units="cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N" value="284.6463756436943 to 1313385.500771473"/>
+                                units="cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N" value="0.13549963001836887 to 1942482.74757132"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="log10Ratio: 0.041637"/>
+                            name="scale" type="datum" value="log10Ratio: 0.055049"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7384,7 +7382,7 @@
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="1.1364 (dimensionless)"/>
+                            name="scale" type="datum" value="0.76923 (dimensionless)"/>
                         <property name="tickValues" type="String" value=""/>
                         <property default="true" name="visible"
                             type="Boolean" value="false"/>
@@ -7427,11 +7425,11 @@
                         <property name="log" type="Boolean" value="false"/>
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
-                            <datumRange units="us2000" value="2015-01-05 4:00 to 7:00"/>
+                            <datumRange units="us2000" value="2013-06-29 5:00 to 8:00"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="microseconds: 7.74750E6"/>
+                            name="scale" type="datum" value="microseconds: 6.07420E6"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7450,11 +7448,11 @@
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
                             <datumRange
-                                units="cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N" value="83.15499279325181 to 1109683.1243590703"/>
+                                units="cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N" value="214.99056219750244 to 429208.10693123395"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="log10Ratio: 0.046352"/>
+                            name="scale" type="datum" value="log10Ratio: 0.025193"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7477,7 +7475,7 @@
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="1.1236 (dimensionless)"/>
+                            name="scale" type="datum" value="0.76336 (dimensionless)"/>
                         <property name="tickValues" type="String" value=""/>
                         <property default="true" name="visible"
                             type="Boolean" value="false"/>
@@ -7519,11 +7517,11 @@
                         <property name="log" type="Boolean" value="false"/>
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
-                            <datumRange units="us2000" value="2015-01-05 4:00 to 7:00"/>
+                            <datumRange units="us2000" value="2013-06-29 5:00 to 8:00"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="microseconds: 7.74750E6"/>
+                            name="scale" type="datum" value="microseconds: 6.07420E6"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7542,11 +7540,11 @@
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
                             <datumRange
-                                units="cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N" value="0.023494644170015205 to 68927.97849578985"/>
+                                units="cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N" value="0.5970313071356014 to 1751554.9842664027"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="log10Ratio: 0.077921"/>
+                            name="scale" type="datum" value="log10Ratio: 0.049749"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7569,7 +7567,7 @@
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="1.2048 (dimensionless)"/>
+                            name="scale" type="datum" value="0.76923 (dimensionless)"/>
                         <property name="tickValues" type="String" value=""/>
                         <property default="true" name="visible"
                             type="Boolean" value="false"/>
@@ -7612,11 +7610,11 @@
                         <property name="log" type="Boolean" value="false"/>
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
-                            <datumRange units="us2000" value="2015-01-05 4:00 to 7:00"/>
+                            <datumRange units="us2000" value="2013-06-29 5:00 to 8:00"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="microseconds: 7.74750E6"/>
+                            name="scale" type="datum" value="microseconds: 6.07420E6"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7635,11 +7633,11 @@
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
                             <datumRange
-                                units="cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N" value="20.660796447282735 to 113765.29691348484"/>
+                                units="cm!U-2!N s!U-1!N sr!U-1!N keV!U-1!N" value="0.04160021623325954 to 842302.5937952024"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="log10Ratio: 0.042510"/>
+                            name="scale" type="datum" value="log10Ratio: 0.056203"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7662,7 +7660,7 @@
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="1.1364 (dimensionless)"/>
+                            name="scale" type="datum" value="0.76923 (dimensionless)"/>
                         <property name="tickValues" type="String" value=""/>
                         <property default="true" name="visible"
                             type="Boolean" value="false"/>
@@ -7705,32 +7703,33 @@
                         <property name="log" type="Boolean" value="false"/>
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
-                            <datumRange units="us2000" value="2015-01-05 4:00 to 7:00"/>
+                            <datumRange units="us2000" value="2013-06-29 5:00 to 8:00"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="microseconds: 7.74750E6"/>
+                            name="scale" type="datum" value="microseconds: 6.07420E6"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
                 </property>
                 <property name="yaxis" type="DomNode">
                     <Axis id="yaxis_8">
-                        <property name="autoLabel" type="Boolean" value="false"/>
+                        <property default="false" name="autoLabel"
+                            type="Boolean" value="true"/>
                         <property name="autoRange" type="Boolean" value="false"/>
                         <property name="autoRangeHints" type="String" value=""/>
                         <property name="drawTickLabels" type="Boolean" value="true"/>
                         <property name="flipped" type="Boolean" value="false"/>
                         <property name="fontSize" type="String" value="1em"/>
-                        <property default="" name="label" type="String" value="MPB"/>
+                        <property default="" name="label" type="String" value="field1"/>
                         <property name="log" type="Boolean" value="false"/>
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
-                            <datumRange units="" value="2.1681883057533247 to 6.660606111579994"/>
+                            <datumRange units="" value="1.9884746752000027 to 37.623674675199986"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="0.054126 (dimensionless)"/>
+                            name="scale" type="datum" value="0.27624 (dimensionless)"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7753,7 +7752,7 @@
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="1.2048 (dimensionless)"/>
+                            name="scale" type="datum" value="0.77519 (dimensionless)"/>
                         <property name="tickValues" type="String" value=""/>
                         <property default="true" name="visible"
                             type="Boolean" value="false"/>
@@ -7795,11 +7794,11 @@
                         <property name="log" type="Boolean" value="false"/>
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
-                            <datumRange units="us2000" value="2015-01-05 4:00 to 7:00"/>
+                            <datumRange units="us2000" value="2013-06-29 5:00 to 8:00"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="microseconds: 7.74750E6"/>
+                            name="scale" type="datum" value="microseconds: 6.07420E6"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7816,11 +7815,11 @@
                         <property name="log" type="Boolean" value="false"/>
                         <property name="opposite" type="Boolean" value="false"/>
                         <property name="range" type="datumRange">
-                            <datumRange units="" value="-78.67528043304043 to -20.224707619195655 "/>
+                            <datumRange units="" value="-43.63567581914543 to 44.04018340162196"/>
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="0.69584 (dimensionless)"/>
+                            name="scale" type="datum" value="0.67443 (dimensionless)"/>
                         <property name="tickValues" type="String" value=""/>
                         <property name="visible" type="Boolean" value="true"/>
                     </Axis>
@@ -7843,7 +7842,7 @@
                         </property>
                         <property name="reference" type="String" value=""/>
                         <property default="0.1 (dimensionless)"
-                            name="scale" type="datum" value="1.1905 (dimensionless)"/>
+                            name="scale" type="datum" value="0.76923 (dimensionless)"/>
                         <property name="tickValues" type="String" value=""/>
                         <property default="true" name="visible"
                             type="Boolean" value="false"/>
@@ -7852,7 +7851,7 @@
             </Plot>
         </property>
         <property name="timeRange" type="datumRange">
-            <datumRange units="us2000" value="2015-01-05 4:00 to 7:00"/>
+            <datumRange units="us2000" value="2013-06-29 5:00 to 8:00"/>
         </property>
     </Application>
 </vap>
